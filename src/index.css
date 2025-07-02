@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url("https://fonts.cdnfonts.com/css/general-sans");
+@import "tailwindcss";
 
 /* Custom Fonts (local) */
 /* These are no longer wrapped in @layer base in Tailwind 4 */
@@ -43,6 +43,7 @@
   --color-black-DEFAULT: #000000;
   --color-white-100: #F7F7F7;
   --color-white-DEFAULT: #FFFFFF;
+  --color-violet-300: #5724ff;
 
   /* Font Families */
   --font-work-sans: var(--font-work-sans); /* Assumes this variable is defined elsewhere in your CSS */
@@ -99,7 +100,7 @@ body {
 }
 
 .special-font b {
-  font-family: "Zentry", sans-serif;
+  font-family: "zentry", sans-serif;
   font-feature-settings: "ss01" on;
 }
 
