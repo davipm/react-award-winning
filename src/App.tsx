@@ -1,5 +1,5 @@
-import About from "./components/about.jsx";
-import Features from "./components/features.jsx";
+import About from "./components/about.tsx";
+import Features from "./components/features.tsx";
 
 export default function App() {
   return (

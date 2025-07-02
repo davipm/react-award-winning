@@ -1,13 +1,23 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
 // import video5 from "../assets/videos/feature-5.mp4";
 
-export const BentoTilt = ({ children, className = "" }) => {
-  const [transformStyle, setTransformStyle] = useState("");
-  const itemRef = useRef(null);
+interface BentoTiltProps {
+  children: ReactNode;
+  className?: string;
+}
 
-  const handleMouseMove = (event) => {
+type MouseEventProps = {
+  clientX: number;
+  clientY: number;
+};
+
+export const BentoTilt = ({ children, className = "" }: BentoTiltProps) => {
+  const [transformStyle, setTransformStyle] = useState("");
+  const itemRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (event: MouseEventProps) => {
     if (!itemRef.current) return;
     const { left, top, width, height } =
       itemRef.current.getBoundingClientRect();
@@ -39,12 +49,19 @@ export const BentoTilt = ({ children, className = "" }) => {
   );
 };
 
-export const BentoCard = ({ src, title, description, isComingSoon }) => {
+interface BentoCardProps {
+  src: string;
+  title: ReactNode;
+  description?: string;
+  isComingSoon?: boolean;
+}
+
+export const BentoCard = ({ src, title, description, isComingSoon }: BentoCardProps) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [hoverOpacity, setHoverOpacity] = useState(0);
-  const hoverButtonRef = useRef(null);
+  const hoverButtonRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (event) => {
+  const handleMouseMove = (event: MouseEventProps) => {
     if (!hoverButtonRef.current) return;
     const rect = hoverButtonRef.current.getBoundingClientRect();
 

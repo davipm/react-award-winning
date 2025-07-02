@@ -5,7 +5,12 @@ import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function AnimatedTitle({ title, containerClass }) {
+interface Props {
+  title: string;
+  containerClass?: string;
+}
+
+export default function AnimatedTitle({ title, containerClass }: Props) {
   const containerRef = useRef(null);
 
   useEffect(() => {
