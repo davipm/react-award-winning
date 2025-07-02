@@ -8,7 +8,7 @@ interface BentoTiltProps {
   className?: string;
 }
 
-type MouseEventProps = {
+export type MouseEventProps = {
   clientX: number;
   clientY: number;
 };
@@ -56,7 +56,12 @@ interface BentoCardProps {
   isComingSoon?: boolean;
 }
 
-export const BentoCard = ({ src, title, description, isComingSoon }: BentoCardProps) => {
+export const BentoCard = ({
+  src,
+  title,
+  description,
+  isComingSoon,
+}: BentoCardProps) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [hoverOpacity, setHoverOpacity] = useState(0);
   const hoverButtonRef = useRef<HTMLDivElement>(null);
