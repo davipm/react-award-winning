@@ -147,7 +147,7 @@ export default function Features() {
               src="videos/feature-3.mp4"
               title={
                 <>
-                  zig<b>m</b>a
+                  n<b>e</b>xus
                 </>
               }
               description="A gamified social hub, adding a new dimension of play to social interaction for Web3 communities."
