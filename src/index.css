@@ -128,11 +128,11 @@ body {
 }
 
 .bento-tilt_1 {
-  @apply relative border-hsla col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out;
+  @apply relative border-hsla overflow-hidden rounded-md transition-transform duration-300 ease-out;
 }
 
 .bento-tilt_2 {
-  @apply relative col-span-1 row-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out;
+  @apply relative overflow-hidden rounded-md transition-transform duration-300 ease-out;
 }
 
 .bento-title {
