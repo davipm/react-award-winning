@@ -1,28 +1,33 @@
+import * as React from "react";
 import gsap from "gsap";
-import { useRef } from "react";
 
-import type { MouseEventProps } from "./features.tsx";
+import { useRef } from "react";
 import AnimatedTitle from "./animated-title.tsx";
 import Button from "./button.tsx";
 
 export default function Story() {
   const frameRef = useRef<HTMLImageElement>(null);
 
-  const handleMouseMove = (event: MouseEventProps) => {
-    const { clientX, clientY } = event;
+  const handleMouseMove = (event: React.MouseEvent<HTMLImageElement>) => {
     const element = frameRef.current;
-
     if (!element) return;
 
+    const { clientX, clientY } = event;
     const rect = element.getBoundingClientRect();
+
     const xPos = clientX - rect.left;
     const yPos = clientY - rect.top;
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((yPos - centerY) / centerY) * -10;
-    const rotateY = ((xPos - centerX) / centerX) * 10;
+    // Calculate the mouse position offset from the center, normalized from -1 to 1.
+    const xOffset = (xPos - centerX) / centerX;
+    const yOffset = (yPos - centerY) / centerY;
+
+    const ROTATION_INTENSITY = 10;
+    const rotateX = -yOffset * ROTATION_INTENSITY;
+    const rotateY = xOffset * ROTATION_INTENSITY;
 
     gsap.to(element, {
       duration: 0.3,

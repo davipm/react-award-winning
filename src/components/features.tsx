@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useRef, useState, type ReactNode } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
@@ -8,16 +9,11 @@ interface BentoTiltProps {
   className?: string;
 }
 
-export type MouseEventProps = {
-  clientX: number;
-  clientY: number;
-};
-
 export const BentoTilt = ({ children, className = "" }: BentoTiltProps) => {
   const [transformStyle, setTransformStyle] = useState("");
   const itemRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (event: MouseEventProps) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!itemRef.current) return;
     const { left, top, width, height } =
       itemRef.current.getBoundingClientRect();
@@ -66,7 +62,7 @@ export const BentoCard = ({
   const [hoverOpacity, setHoverOpacity] = useState(0);
   const hoverButtonRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (event: MouseEventProps) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!hoverButtonRef.current) return;
     const rect = hoverButtonRef.current.getBoundingClientRect();
 
@@ -201,7 +197,7 @@ const Features = () => (
 
         <BentoTilt className="bento-tilt_2 col-span-2 md:col-span-1">
           <video
-            src="videos/feature-5.mp4"
+            src="/videos/feature-5.mp4"
             // src={String(video5)}
             loop
             muted
