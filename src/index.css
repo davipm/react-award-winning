@@ -48,11 +48,6 @@
   /* Font Families */
   --font-work-sans: var(--font-work-sans); /* Assumes this variable is defined elsewhere in your CSS */
 
-  /* Border Radius */
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-
   /* Box Shadows */
   --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
   --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);

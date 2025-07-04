@@ -5,12 +5,16 @@ import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   containerClass?: string;
 }
 
-export default function AnimatedTitle({ title, containerClass }: Props) {
+export default function AnimatedTitle({
+  title,
+  containerClass,
+  ...props
+}: Props) {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -40,7 +44,11 @@ export default function AnimatedTitle({ title, containerClass }: Props) {
   }, []);
 
   return (
-    <div ref={containerRef} className={clsx("animated-title", containerClass)}>
+    <div
+      {...props}
+      ref={containerRef}
+      className={clsx("animated-title", containerClass)}
+    >
       {title.split("<br />").map((line, index) => (
         <div
           key={index}

@@ -1,6 +1,8 @@
 import About from "./components/about.tsx";
 import Features from "./components/features.tsx";
 import Story from "./components/story.tsx";
+import Contact from "./components/contact.tsx";
+import Footer from "./components/footer.tsx";
 
 export default function App() {
   return (
@@ -8,6 +10,8 @@ export default function App() {
       <About />
       <Features />
       <Story />
+      <Contact />
+      <Footer />
     </main>
   );
 }
