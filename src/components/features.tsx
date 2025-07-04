@@ -1,36 +1,76 @@
-import * as React from "react";
-import { useRef, useState, type ReactNode } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
 // import video5 from "../assets/videos/feature-5.mp4";
 
-interface BentoTiltProps {
-  children: ReactNode;
+/**
+ * Defines the props for the BentoTilt component.
+ */
+type BentoTiltProps = {
+  children: React.ReactNode;
   className?: string;
-}
+};
 
+// Constants for the tilt effect to improve readability and maintainability.
+const TILT_FACTOR = 5;
+const PERSPECTIVE = "700px";
+const SCALE = "0.95";
+const INITIAL_TRANSFORM = "";
+
+/**
+ * A React functional component that provides a tilt effect on hover for a child element.
+ * The tilt effect is achieved by dynamically updating the transform style based on
+ * the user's mouse position relative to the component.
+ *
+ * @param {object} props - The properties passed to the component.
+ * @param {React.ReactNode} props.children - The content to be rendered inside the component.
+ * @param {string} [props.className=""] - Optional class name for custom styling.
+ */
 export const BentoTilt = ({ children, className = "" }: BentoTiltProps) => {
-  const [transformStyle, setTransformStyle] = useState("");
+  const [transformStyle, setTransformStyle] = useState(INITIAL_TRANSFORM);
   const itemRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (!itemRef.current) return;
-    const { left, top, width, height } =
-      itemRef.current.getBoundingClientRect();
+  /**
+   * Handles the mouse move event on a target element and calculates the tilt and transformation effect
+   * based on the mouse position relative to the element. Updates the transform style dynamically.
+   *
+   * This function is used in conjunction with `useCallback` to memoize the event handler,
+   * ensuring it does not re-render unnecessarily.
+   *
+   * The calculated transformation effect includes:
+   * - Perspective projection.
+   * - Rotation along the X and Y axes based on mouse movement.
+   * - Scaling for a dynamic visual effect.
+   *
+   * @param {React.MouseEvent<HTMLDivElement>} event - The mouse event object containing information about the mouse's position.
+   * @returns {void} Does not return any value. Updates the transformation style of the referenced element.
+   */
+  const handleMouseMove = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      if (!itemRef.current) {
+        return;
+      }
 
-    const relativeX = (event.clientX - left) / width;
-    const relativeY = (event.clientY - top) / height;
+      const { left, top, width, height } =
+        itemRef.current.getBoundingClientRect();
 
-    const tiltX = (relativeY - 0.5) * 5;
-    const tiltY = (relativeX - 0.5) * -5;
+      // Calculate mouse position relative to the element, from 0 to 1.
+      const relativeX = (event.clientX - left) / width;
+      const relativeY = (event.clientY - top) / height;
 
-    const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(.95, .95, .95)`;
-    setTransformStyle(newTransform);
-  };
+      // Map the relative position to tilt angles. The center (0.5, 0.5) results in tilt 0.
+      const tiltX = (relativeY - 0.5) * TILT_FACTOR;
+      const tiltY = (relativeX - 0.5) * -TILT_FACTOR;
 
-  const handleMouseLeave = () => {
-    setTransformStyle("");
-  };
+      const newTransform = `perspective(${PERSPECTIVE}) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(${SCALE}, ${SCALE}, ${SCALE})`;
+      setTransformStyle(newTransform);
+    },
+    [], // No dependencies needed as all values used are stable.
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    setTransformStyle(INITIAL_TRANSFORM);
+  }, []); // No dependencies needed as setTransformStyle is stable.
 
   return (
     <div
@@ -38,7 +78,12 @@ export const BentoTilt = ({ children, className = "" }: BentoTiltProps) => {
       className={className}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ transform: transformStyle }}
+      style={{
+        transform: transformStyle,
+        // Hint to the browser that the transform property will change,
+        // allowing for potential performance optimizations during the animation.
+        willChange: "transform",
+      }}
     >
       {children}
     </div>
@@ -47,7 +92,7 @@ export const BentoTilt = ({ children, className = "" }: BentoTiltProps) => {
 
 interface BentoCardProps {
   src: string;
-  title: ReactNode;
+  title: React.ReactNode;
   description?: string;
   isComingSoon?: boolean;
 }
