@@ -9,10 +9,18 @@ export const VIDEO_IDS = {
   MAIN: "main-video",
 };
 
+/**
+ * Manages state and animations for the hero video component.
+ * This hook handles video loading, cycling through a playlist, and GSAP animations.
+ *
+ * @param {object} props - The properties for the hook.
+ * @param {RefObject<any>} props.mainVideoRef - A ref to the main video element for animation control.
+ * @returns An object with state and handlers for the hero video component.
+ */
 export const useHeroVideo = ({
   mainVideoRef,
 }: {
-  mainVideoRef: RefObject<any>;
+  mainVideoRef: RefObject<HTMLVideoElement | any>;
 }) => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [hasClicked, setHasClicked] = useState(false);
