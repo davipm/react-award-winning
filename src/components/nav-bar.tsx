@@ -7,63 +7,84 @@ import { TiLocationArrow } from "react-icons/ti";
 
 const navItems = ["Nexus", "Vault", "Prologue", "About", "Contact"];
 
+/**
+ * A responsive, fixed navigation bar that hides on scroll-down and reappears on scroll-up.
+ * Features a background audio toggle with a visual indicator.
+ */
 export default function NavBar() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [isIndicatorActive, setIsIndicatorActive] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const audioElementRef = useRef<HTMLAudioElement>(null);
   const navContainerRef = useRef<HTMLDivElement>(null);
 
-  const { y: currentScrollY } = useWindowScroll();
-  const [isNavVisible, setIsNavVisible] = useState(true);
-  const [lastScrolly, setLastScrolly] = useState(0);
+  const { y: currentScrollY = 0 } = useWindowScroll();
 
-  const toggleAudioIndicator = () => {
-    setIsAudioPlaying((prevState) => !prevState);
-    setIsIndicatorActive((prevState) => !prevState);
+  /**
+   * Toggles the background audio playback state.
+   */
+  const toggleAudio = () => {
+    setIsAudioPlaying((prev) => !prev);
   };
 
+  // Effect to play or pause the audio element based on state.
   useEffect(() => {
+    const audioElement = audioElementRef.current;
+    if (!audioElement) return;
+
     if (isAudioPlaying) {
-      audioElementRef.current?.play();
+      // play() returns a promise which can be rejected if the user hasn't interacted with the page yet.
+      audioElement.play().catch((error) => {
+        console.error("Audio playback failed:", error);
+        // Optionally reset state if playback fails
+        setIsAudioPlaying(false);
+      });
     } else {
-      audioElementRef.current?.pause();
+      audioElement.pause();
     }
   }, [isAudioPlaying]);
 
+  // Effect to control navbar visibility based on scroll direction.
   useEffect(() => {
-    if (currentScrollY === 0) {
+    // A small buffer to prevent hiding the nav immediately on scroll from the top.
+    const SCROLL_BUFFER = 10;
+
+    if (currentScrollY <= SCROLL_BUFFER) {
       setIsNavVisible(true);
-      navContainerRef.current?.classList.remove("floating-nav");
-    } else if (currentScrollY > lastScrolly) {
+    } else if (currentScrollY > lastScrollY) {
       setIsNavVisible(false);
-      navContainerRef.current?.classList.add("floating-nav");
-    } else if (currentScrollY < lastScrolly) {
+    } else {
       setIsNavVisible(true);
-      navContainerRef.current?.classList.add("floating-nav");
     }
 
-    setLastScrolly(currentScrollY);
-  }, [currentScrollY, lastScrolly]);
+    setLastScrollY(currentScrollY);
+  }, [currentScrollY, lastScrollY]);
 
+  // Effect to animate the navbar's appearance and disappearance.
   useEffect(() => {
     gsap.to(navContainerRef.current, {
       y: isNavVisible ? 0 : -100,
       opacity: isNavVisible ? 1 : 0,
-      duration: 0.2,
+      duration: 0.3,
+      ease: "power2.out",
     });
   }, [isNavVisible]);
 
+  const navContainerClasses = clsx(
+    "fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6",
+    {
+      // This class can be used for styling the navbar when it's not at the top.
+      "floating-nav": currentScrollY > 0,
+    },
+  );
+
   return (
-    <div
-      ref={navContainerRef}
-      className="fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
-    >
+    <div ref={navContainerRef} className={navContainerClasses}>
       <header className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4">
           <div className="flex items-center gap-7">
             <img src="/img/logo.png" alt="Logo" className="w-10" />
-
             <Button
               id="product-button"
               title="Products"
@@ -74,9 +95,9 @@ export default function NavBar() {
 
           <div className="flex h-full items-center">
             <div className="hidden md:block">
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <a
-                  key={index}
+                  key={item}
                   href={`#${item.toLowerCase()}`}
                   className="nav-hover-btn"
                 >
@@ -87,21 +108,14 @@ export default function NavBar() {
 
             <button
               className="ml-10 flex items-center space-x-0.5"
-              onClick={toggleAudioIndicator}
+              onClick={toggleAudio}
+              aria-label={isAudioPlaying ? "Pause audio" : "Play audio"}
             >
-              <audio
-                src="/audio/loop.mp3"
-                ref={audioElementRef}
-                loop
-                className="hidden"
-              />
-
+              <audio src="/audio/loop.mp3" ref={audioElementRef} loop hidden />
               {[1, 2, 3, 4].map((bar) => (
                 <div
                   key={bar}
-                  className={clsx("indicator-line", {
-                    active: isIndicatorActive,
-                  })}
+                  className={clsx("indicator-line", { active: isAudioPlaying })}
                   style={{ animationDelay: `${bar * 0.1}s` }}
                 />
               ))}
