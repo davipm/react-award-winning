@@ -50,6 +50,13 @@ export default function Hero() {
           ease: "power1.out",
           onStart: () => nextVdRef.current?.play(),
         });
+
+        gsap.from("#current-video", {
+          transformOrigin: "center center",
+          scale: 0,
+          duration: 1.5,
+          eaa: "power1.out",
+        });
       }
     },
     { dependencies: [currentIndex], revertOnUpdate: true },
