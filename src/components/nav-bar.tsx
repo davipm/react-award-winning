@@ -107,7 +107,7 @@ export default function NavBar() {
             </div>
 
             <button
-              className="ml-10 flex items-center space-x-0.5"
+              className="ml-10 flex items-center space-x-0.5 hover:cursor-pointer p-3"
               onClick={toggleAudio}
               aria-label={isAudioPlaying ? "Pause audio" : "Play audio"}
             >
