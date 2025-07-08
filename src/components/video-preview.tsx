@@ -1,11 +1,11 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
-export default function VideoPreview({
-  children,
-}: {
+interface Props {
   children: React.ReactNode;
-}) {
+}
+
+export default function VideoPreview({ children }: Props) {
   const [isHovering, setIsHovering] = useState(false);
 
   const sectionRef = useRef(null);
