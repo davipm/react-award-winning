@@ -41,16 +41,6 @@ export function Hero() {
 
   return (
     <section className="relative h-dvh w-screen overflow-x-hidden">
-      {/*{loading && (*/}
-      {/*  <div className="absolute z-100 flex h-dvh w-screen items-center justify-center overflow-hidden bg-violet-50">*/}
-      {/*    <div className="three-body">*/}
-      {/*      <div className="three-body__dot" />*/}
-      {/*      <div className="three-body__dot" />*/}
-      {/*      <div className="three-body__dot" />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*)}*/}
-
       <motion.div
         id={VIDEO_IDS.FRAME}
         ref={frameRef}
