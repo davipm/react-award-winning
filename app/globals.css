@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --font-general: var(--font-general), sans-serif;
+  --font-zentry: var(--font-zentry), sans-serif;
+  --font-circularweb-book: var(--font-circularweb-book), sans-serif;
+  --font-robert: var(--font-robert), sans-serif;
+
+  --animate-wiggle: indicator-line 0.5s ease infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background-color: #dfdff0;
+  font-family: var(--font-general), sans-serif;
+}
+
+@keyframes indicator-line {
+  0% {
+    height: 4px;
+    transform: translateY(-0px);
+  }
+  50% {
+    height: 16px;
+    transform: translateY(-4px);
+  }
+  100% {
+    height: 4px;
+    transform: translateY(-0px);
+  }
+}
+
+/* From Uiverse.io by G4b413l */
+/* https://uiverse.io/G4b413l/tidy-walrus-92 */
+.three-body {
+  --uib-size: 35px;
+  --uib-speed: 0.8s;
+  --uib-color: #5d3fd3;
+  position: relative;
+  display: inline-block;
+  height: var(--uib-size);
+  width: var(--uib-size);
+  animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
+}
+
+.three-body__dot {
+  position: absolute;
+  height: 100%;
+  width: 30%;
+}
+
+.three-body__dot:after {
+  content: "";
+  position: absolute;
+  height: 0%;
+  width: 100%;
+  padding-bottom: 100%;
+  background-color: var(--uib-color);
+  border-radius: 50%;
+}
+
+.three-body__dot:nth-child(1) {
+  bottom: 5%;
+  left: 0;
+  transform: rotate(60deg);
+  transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(1)::after {
+  bottom: 0;
+  left: 0;
+  animation: wobble1 var(--uib-speed) infinite ease-in-out;
+  animation-delay: calc(var(--uib-speed) * -0.3);
+}
+
+.three-body__dot:nth-child(2) {
+  bottom: 5%;
+  right: 0;
+  transform: rotate(-60deg);
+  transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(2)::after {
+  bottom: 0;
+  left: 0;
+  animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15) ease-in-out;
+}
+
+.three-body__dot:nth-child(3) {
+  bottom: -5%;
+  left: 0;
+  transform: translateX(116.666%);
+}
+
+.three-body__dot:nth-child(3)::after {
+  top: 0;
+  left: 0;
+  animation: wobble2 var(--uib-speed) infinite ease-in-out;
+}
+
+@keyframes spin78236 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wobble1 {
+  0%,
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-66%) scale(0.65);
+    opacity: 0.8;
+  }
+}
+
+@keyframes wobble2 {
+  0%,
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(66%) scale(0.65);
+    opacity: 0.8;
+  }
+}
+
+.mask-clip-path {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.contact-clip-path-1 {
+  clip-path: polygon(25% 0%, 74% 0, 69% 64%, 34% 73%);
+}
+
+.contact-clip-path-2 {
+  clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
+}
+
+.sword-man-clip-path {
+  clip-path: polygon(16% 0, 89% 15%, 75% 100%, 0 97%);
+}
+
+.border-hsla {
+  border-color: color-mix(in oklab, var(--color-white) /* #fff = #ffffff */ 20%, transparent);
+}
+
+.special-font b {
+  font-family: var(--font-zentry), sans-serif;
+  font-feature-settings: "ss01" on;
+}

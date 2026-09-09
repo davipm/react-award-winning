@@ -1,43 +1,38 @@
-![Interactive Gaming UI Components](img.png)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-# Interactive Gaming UI Components
+## Getting Started
 
-A modern React-based gaming interface featuring interactive video previews and animated hero sections using GSAP animations.
+First, run the development server:
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![GSAP](https://img.shields.io/badge/gsap-88CE02?style=for-the-badge&logo=gsap&logoColor=white)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Prerequisites
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Make sure you have the following software installed on your machine:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
--   **Node.js**: Latest LTS version
--   **npm**: The Node.js package manager
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Installation
+## Learn More
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <repository-url>
-    ```
+To learn more about Next.js, take a look at the following resources:
 
-2.  **Navigate to the project directory:**
-    ```bash
-    cd award-winning
-    ```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-3.  **Install the dependencies:**
-    ```bash
-    npm install
-    ```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Available Scripts
+## Deploy on Vercel
 
-| Script        | Description                                     |
-|---------------|-------------------------------------------------|
-| `npm run dev` | Runs the app in development mode.               |
-| `npm run build` | Builds the app for production.                  |
-| `npm run lint`  | Lints the project files using ESLint.           |
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+<img src="./noai.png" alt="Hero Video" />
