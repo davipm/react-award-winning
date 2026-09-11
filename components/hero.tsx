@@ -15,7 +15,6 @@ export function Hero() {
   const frameRef = useRef<HTMLDivElement>(null);
 
   const {
-    loading,
     isAnimating,
     handleVideoLoad,
     backgroundVideoSrc,
