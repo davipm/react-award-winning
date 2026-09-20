@@ -75,7 +75,6 @@ export function Hero() {
             ref={mainVideoRef}
             id={VIDEO_IDS.MAIN}
             src={mainVideoSrc}
-            poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
             loop
             muted
             playsInline
