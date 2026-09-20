@@ -91,6 +91,7 @@ export function BentoCard({ src, isComingSoon, description, title }: BentoCardPr
     <div className="relative size-full">
       <video
         src={src}
+        poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
         loop
         muted
         autoPlay

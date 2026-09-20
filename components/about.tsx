@@ -72,6 +72,8 @@ export function About() {
               height={1080}
               loading="eager"
               className="absolute left-0 top-0 size-full object-cover object-center"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
             />
           </motion.div>
         </div>

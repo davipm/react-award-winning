@@ -81,6 +81,7 @@ export function Features() {
           <BentoTilt className="relative overflow-hidden rounded-md transition-transform duration-300 ease-out col-span-2 md:col-span-1">
             <video
               src="/videos/feature-5.mp4"
+              poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
               loop
               muted
               autoPlay

@@ -54,6 +54,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${zentry.variable} ${circularwebBook.variable} ${robert.variable} ${general.variable} h-full antialiased`}
     >
       <body className="w-dvw overflow-x-hidden font-general bg-[#dfdff0]">
