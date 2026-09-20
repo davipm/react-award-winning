@@ -5,7 +5,7 @@ import { Button } from '@/components/button';
 
 const ImageClipBox = ({ src, className }: React.ComponentProps<'img'>) => (
   <div className={className}>
-    <Image src={src as string} alt="Image Clip" width={1920} height={1080} />
+    <Image src={src as string} alt="Image Clip" width={300} height={300} />
   </div>
 );
 
