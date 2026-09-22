@@ -71,6 +71,7 @@ export function About() {
               width={1920}
               height={1080}
               loading="eager"
+              priority
               className="absolute left-0 top-0 size-full object-cover object-center"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
